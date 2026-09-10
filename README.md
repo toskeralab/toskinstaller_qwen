@@ -1,5 +1,5 @@
 # toskinstaller_qwen
-TOSKINSTALLER é um programa portátil para Windows que encapsula apps finalizados como instalador .msi.
+TOSKINSTALLER é um programa portátil para Windows que encapsula apps finalizados como instalador .msi. Desenvolvido pela <ToskeraLAB ART/TECH House>.
 
 O que faz:
 TOSKINSTALLER permite que o usuário adicione os arquivos de um programa para OS Windows criado por ele para ser convertido em .EXE e distribuído como instalador ou descompactador para versão "portable". Antes da conversão final, TOSKINSTALLER permite configurar e customizar as paginas de instalação (SETUP WIZARD) adicionando logo, informações de licença, banner animados, opções de instalações de aplicativos parceiros, temas de cores de animação da porcentagem da instalação. (3 opções de animação).
