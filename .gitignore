@@ -1,62 +1,81 @@
 ```
-# Python
-__pycache__/
+# Compiled and build artifacts
 *.pyc
-*.pyo
-*.pyd
-*.py~
-*.py.class
+__pycache__/
+*.o
+*.obj
 *.so
-*.egg-info/
-.eggs/
+*.dylib
+*.dll
+*.exe
+*.out
 
 # Dependencies
-venv/
 .venv/
+venv/
 .env
 .env.local
-*.env.*
+.env.*
 
-# Build artifacts
-build/
+# Build directories
 dist/
-*.egg
+build/
+target/
 
-# Testing
+# Python specific
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
 .coverage
-htmlcov/
 .coverage.*
-.cache/
-.pytest_cache/
-.hypothesis/
-
-# Logs
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
-
-# OS generated files
+*.tmp
+*.swp
+*~
 .DS_Store
 Thumbs.db
 
-# IDE
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
-*.tmp
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+coverage/
 
 # Distribution / packaging
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
 .installed.cfg
-*.manifest
-*.spec
+*.egg
+MANIFEST
 
-# PyInstaller
-*.dist/
-*.build/
-*.cache/
-*.spec
-
-# mypy
-.mypy_cache/
+# System files
+.DS_Store
+Thumbs.db
 ```

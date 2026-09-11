@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TOSKINSTALLER - WiX Toolset Template
+Template para geração de instaladores .MSI
+
+Copyright (c) 2024 ToskeraLAB ART/TECH House
+Licensed under MIT License
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product 
+        Id="{product_id}"
+        Name="{app_name}"
+        Language="1033"
+        Version="{app_version}"
+        Manufacturer="{manufacturer}"
+        UpgradeCode="{upgrade_code}">
+        
+        <Package 
+            InstallerVersion="500" 
+            Compressed="yes" 
+            InstallScope="perMachine"
+            Description="Instalador de {app_name}"
+            Keywords="Installer,MSI,{app_name}"
+            Manufacturer="{manufacturer}" />
+        
+        <!-- Suporte a upgrade -->
+        <MajorUpgrade 
+            AllowSameVersionUpgrades="yes"
+            DowngradeErrorMessage="Uma versão mais recente já está instalada. A instalação será cancelada." />
+        
+        <!-- Mídia de instalação -->
+        <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+        
+        <!-- Propriedades de UI -->
+        <Property Id="ARPHELPLINK" Value="{app_url}" />
+        <Property Id="ARPCOMMENTS" Value="Instalador criado com TOSKINSTALLER - ToskeraLAB ART/TECH House" />
+        
+        <!-- UI Reference -->
+        <UI>
+            <UIRef Id="WixUI_InstallDir" />
+            <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+            
+            <!-- Licença customizada -->
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">LicenseAccepted = "1"</Publish>
+        </UI>
+        
+        <!-- Ícone do programa -->
+        <Icon Id="icon.ico" SourceFile="$(var.appDir)\{app_exe}" />
+        <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+        
+        <!-- Diretórios -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <!-- Pasta de instalação principal -->
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLDIR" Name="{app_name}">
+                    <Component Id="MainExecutable" Guid="*">
+                        <File 
+                            Id="MainExe"
+                            Source="$(var.appDir)\{app_exe}" 
+                            KeyPath="yes"
+                            Checksum="yes" />
+                        
+                        <!-- Registrar para desinstalação -->
+                        <RegistryKey Root="HKLM" Key="Software\{manufacturer}\{app_name}">
+                            <RegistryValue Type="string" Name="InstallLocation" Value="[INSTALLDIR]" KeyPath="yes" />
+                            <RegistryValue Type="string" Name="Version" Value="{app_version}" />
+                            <RegistryValue Type="string" Name="InstallDate" Value="[Date]" />
+                        </RegistryKey>
+                    </Component>
+                    
+                    <!-- Componentes de apps parceiros -->
+                    {partners_component}
+                </Directory>
+            </Directory>
+            
+            <!-- Atalho na Área de Trabalho -->
+            <Directory Id="DesktopFolder" Name="Desktop">
+                <Component Id="DesktopShortcut" Guid="*">
+                    <Condition>{create_desktop} = "yes"</Condition>
+                    <Shortcut 
+                        Id="DesktopShortcut"
+                        Name="{app_name}"
+                        Description="Executar {app_name}"
+                        Target="[INSTALLDIR]{app_exe}"
+                        WorkingDirectory="INSTALLDIR" />
+                    <RemoveFolder Id="DesktopFolder" On="uninstall" />
+                    <RegistryValue Root="HKCU" Key="Software\{manufacturer}\{app_name}\Desktop" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+                </Component>
+            </Directory>
+            
+            <!-- Atalhos no Menu Iniciar -->
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="StartMenuFolder" Name="{app_name}">
+                    <Component Id="StartMenuShortcut" Guid="*">
+                        <Condition>{create_startmenu} = "yes"</Condition>
+                        <Shortcut 
+                            Id="StartMenuShortcut"
+                            Name="{app_name}"
+                            Description="Executar {app_name}"
+                            Target="[INSTALLDIR]{app_exe}"
+                            WorkingDirectory="INSTALLDIR" />
+                        <RemoveFolder Id="StartMenuFolder" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="Software\{manufacturer}\{app_name}\StartMenu" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+        
+        <!-- Features -->
+        <Feature 
+            Id="MainApplication" 
+            Title="{app_name}" 
+            Level="1"
+            Description="Aplicativo principal {app_name}"
+            Display="expand"
+            ConfigurableDirectory="INSTALLDIR">
+            
+            <ComponentRef Id="MainExecutable" />
+            <ComponentRef Id="DesktopShortcut" />
+            <ComponentRef Id="StartMenuShortcut" />
+        </Feature>
+        
+        <!-- Variáveis Wix -->
+        <WixVariable Id="LicenseRtf" Value="{license_rtf}" Overridable="yes" />
+        <WixVariable Id="WixUILicenseRtf" Value="{license_rtf}" Overridable="yes" />
+        
+        <!-- Binary para custom actions se necessário -->
+        <Binary Id="CustomActions.dll" SourceFile="" />
+        
+    </Product>
+</Wix>
