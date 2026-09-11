@@ -1,0 +1,62 @@
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py~
+*.py.class
+*.so
+*.egg-info/
+.eggs/
+
+# Dependencies
+venv/
+.venv/
+.env
+.env.local
+*.env.*
+
+# Build artifacts
+build/
+dist/
+*.egg
+
+# Testing
+.coverage
+htmlcov/
+.coverage.*
+.cache/
+.pytest_cache/
+.hypothesis/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Distribution / packaging
+.Python
+*.egg-info/
+.installed.cfg
+*.manifest
+*.spec
+
+# PyInstaller
+*.dist/
+*.build/
+*.cache/
+*.spec
+
+# mypy
+.mypy_cache/
+```
