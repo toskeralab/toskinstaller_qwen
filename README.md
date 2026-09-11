@@ -48,12 +48,62 @@ python src/main.py
 
 ### Build do Executável Portátil
 
-```bash
-# Usando Nuitka (recomendado)
-python build_toskinstaller.py
+O TOSKINSTALLER oferece **duas opções** de compilação. Recomenda-se testar primeiro em modo desenvolvimento (`python src/main.py`).
 
-# Ou usando PyInstaller (fallback)
+#### Opção 1: Nuitka (Recomendado)
+
+```bash
+# Instalar dependências de build
+pip install -r requirements-dev.txt
+
+# Executar build com Nuitka
+python build_toskinstaller.py --nuitka
+
+# O executável será gerado em: dist/ToskInstaller.exe
+```
+
+**Vantagens do Nuitka:**
+- ✅ Compilação para C++ (mais rápido em runtime)
+- ✅ Ofuscação de código nativa
+- ✅ Menor taxa de falsos positivos em antivírus
+- ✅ Melhor performance com UI Qt
+
+#### Opção 2: PyInstaller (Alternativa)
+
+```bash
+# Instalar PyInstaller
+pip install pyinstaller
+
+# Executar build
 pyinstaller --onefile --windowed --name=ToskInstaller src/main.py
+
+# O executável será gerado em: dist/ToskInstaller.exe
+```
+
+**Vantagens do PyInstaller:**
+- ✅ Mais maduro e testado
+- ✅ Build mais rápido (1-3 min vs 5-15 min do Nuitka)
+- ✅ Melhor compatibilidade com bibliotecas complexas
+- ✅ Fácil depuração
+
+#### Troubleshooting Comum
+
+**Erro: Módulo não encontrado**
+```bash
+pip install -r requirements.txt --upgrade
+rm -rf dist/ build/ __pycache__/
+python build_toskinstaller.py --nuitka
+```
+
+**Antivírus bloqueando o executável**
+- Assine digitalmente o executável (configurável no próprio TOSKINSTALLER)
+- Adicione exceção no antivírus para a pasta `dist/`
+- Use Nuitka em vez de PyInstaller (menor detecção)
+
+**Tamanho muito grande (>200MB)**
+```bash
+# Usar compressão UPX com Nuitka
+python build_toskinstaller.py --nuitka --enable-plugin=upx
 ```
 
 ## 📖 Documentação
