@@ -3,14 +3,14 @@ TOSKINSTALLER - Páginas do Wizard
 Coleção de todas as páginas da interface wizard
 """
 
-from .page_project import ProjectSelectionPage
-from .page_language import LanguageDetectionPage
-from .page_tools import ToolInstallationPage
-from .page_formats import PackageFormatsPage
-from .page_ui_custom import UICustomizationPage
-from .page_partners import PartnerAppsPage
-from .page_shortcuts import ShortcutsPage
-from .page_summary import SummaryPage
+from src.ui.wizard.page_project import ProjectSelectionPage
+from src.ui.wizard.page_language import LanguageDetectionPage
+from src.ui.wizard.page_tools import ToolInstallationPage
+from src.ui.wizard.page_formats import PackageFormatsPage
+from src.ui.wizard.page_ui_custom import UICustomizationPage
+from src.ui.wizard.page_partners import PartnerAppsPage
+from src.ui.wizard.page_shortcuts import ShortcutsPage
+from src.ui.wizard.page_summary import SummaryPage
 
 __all__ = [
     'ProjectSelectionPage',

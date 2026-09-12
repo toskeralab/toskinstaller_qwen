@@ -11,7 +11,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, Signal, Slot, QSize
 from PySide6.QtGui import QFont, QIcon
 
-from .wizard.wizard_controller import WizardController
+from src.ui.wizard.wizard_controller import WizardController
 from src.core.logger import get_logger
 
 logger = get_logger(__name__)

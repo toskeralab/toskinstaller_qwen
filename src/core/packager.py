@@ -294,7 +294,7 @@ class Packager:
     
     def _generate_portable(self, source_exe: Path) -> PackageResult:
         """Gera pacote portable"""
-        from ..engines.portable.portable_builder import PortableBuilder
+        from src.engines.portable.portable_builder import PortableBuilder
         
         result = PackageResult(
             success=False,
@@ -327,7 +327,7 @@ class Packager:
     
     def _sign_packages(self):
         """Aplica assinatura digital aos pacotes gerados"""
-        from ..tools.sign_tool import SignTool
+        from src.tools.sign_tool import SignTool
         
         if not self.config.signing_config:
             logger.warning("Configuração de assinatura ausente")

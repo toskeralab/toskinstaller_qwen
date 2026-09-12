@@ -7,17 +7,20 @@ Desenvolvido por ToskeraLAB ART/TECH House
 import sys
 import os
 
-# Adicionar src ao path
-src_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
-if src_path not in sys.path:
-    sys.path.insert(0, src_path)
+# Obter o diretório absoluto onde main.py reside (dentro de src/)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Subir um nível para obter a RAIZ do projeto
+project_root = os.path.dirname(current_dir)
+# Adicionar a raiz ao sys.path se ainda não existir
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import Qt, QCoreApplication
 from PySide6.QtGui import QFont
 
-from ui.main_window import MainWindow
-from core.logger import get_logger
+from src.ui.main_window import MainWindow
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 
