@@ -5,11 +5,10 @@ Logo, temas, cores e animações do instalador
 
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QLabel, QComboBox, QPushButton, 
-    QGroupBox, QHBoxLayout, QFrame
+    QGroupBox, QHBoxLayout, QFrame, QColorDialog
 )
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Qt
 from PySide6.QtGui import QFont, QColor
-from PySide6.QtWidgets import QColorDialog
 
 from src.core.logger import get_logger
 

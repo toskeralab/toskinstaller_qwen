@@ -50,9 +50,8 @@ def load_stylesheet(theme_name: str = 'toskera') -> str:
 def main():
     """Função principal de entrada"""
     
-    # Habilitar High DPI
-    QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    # High DPI é habilitado por padrão nas versões recentes do Qt
+    # As configurações AA_EnableHighDpiScaling e AA_UseHighDpiPixmaps foram removidas
     
     app = QApplication(sys.argv)
     
