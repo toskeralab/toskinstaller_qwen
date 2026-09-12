@@ -7,14 +7,14 @@ from PySide6.QtCore import QObject, Signal, Slot, Property
 from PySide6.QtWidgets import QStackedWidget, QWidget
 from typing import List, Optional, Any
 
-from .page_project import ProjectSelectionPage
-from .page_language import LanguageDetectionPage
-from .page_tools import ToolInstallationPage
-from .page_formats import PackageFormatsPage
-from .page_ui_custom import UICustomizationPage
-from .page_partners import PartnerAppsPage
-from .page_shortcuts import ShortcutsPage
-from .page_summary import SummaryPage
+from src.ui.wizard.page_project import ProjectSelectionPage
+from src.ui.wizard.page_language import LanguageDetectionPage
+from src.ui.wizard.page_tools import ToolInstallationPage
+from src.ui.wizard.page_formats import PackageFormatsPage
+from src.ui.wizard.page_ui_custom import UICustomizationPage
+from src.ui.wizard.page_partners import PartnerAppsPage
+from src.ui.wizard.page_shortcuts import ShortcutsPage
+from src.ui.wizard.page_summary import SummaryPage
 
 from src.core.logger import get_logger
 

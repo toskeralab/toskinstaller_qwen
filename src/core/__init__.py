@@ -8,12 +8,12 @@ Módulo central responsável por:
 - Instalação automática de ferramentas externas
 """
 
-from .detector import ProjectDetector
-from .compiler_manager import CompilerManager
-from .packager import Packager
-from .config_manager import ConfigManager
-from .logger import setup_logger
-from .tool_installer import ToolInstaller
+from src.core.detector import ProjectDetector
+from src.core.compiler_manager import CompilerManager
+from src.core.packager import Packager
+from src.core.config_manager import ConfigManager
+from src.core.logger import setup_logger
+from src.core.tool_installer import ToolInstaller
 
 __all__ = [
     'ProjectDetector',

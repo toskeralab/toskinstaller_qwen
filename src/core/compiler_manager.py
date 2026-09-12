@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Type
 from abc import ABC, abstractmethod
 
-from .logger import get_logger
-from .detector import ProjectInfo, Language, BuildTool
+from src.core.logger import get_logger
+from src.core.detector import ProjectInfo, Language, BuildTool
 
 logger = get_logger(__name__)
 
