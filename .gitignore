@@ -1,1 +1,16 @@
-Nothing needs to be added to .gitignore since only a Python source file was modified and no build artifacts, dependencies, or temporary files were detected in the changes.
+*.pyc
+__pycache__/
+*.log
+*.tmp
+*.swp
+.env
+.env.local
+.vscode/
+.idea/
+dist/
+build/
+.coverage
+coverage/
+htmlcov/
+.mypy_cache/
+.pytest_cache/
