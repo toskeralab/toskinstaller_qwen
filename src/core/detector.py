@@ -116,6 +116,8 @@ class ProjectDetector:
     
     def __init__(self):
         self.logger = get_logger(__name__)
+        self._last_result: Optional[ProjectInfo] = None
+        self._is_valid = False
     
     def detect(self, project_path: str, auto_confirm: bool = True) -> ProjectInfo:
         """
@@ -147,32 +149,38 @@ class ProjectDetector:
         # Determinar linguagem mais provável
         if not scores:
             self.logger.warning("Nenhuma linguagem reconhecida detectada")
-            return self._create_unknown_project(path)
+            result = self._create_unknown_project(path)
+        else:
+            best_language = max(scores.items(), key=lambda x: x[1])
+            language, confidence = best_language
+            
+            self.logger.info(f"Linguagem detectada: {language.value} (confiança: {confidence:.2f})")
+            
+            # Obter ferramentas recomendadas
+            recommended_tools = self._get_recommended_tools(language)
+            
+            # Tentar encontrar arquivo principal
+            main_file = self._find_main_file(path, language)
+            
+            # Tentar extrair nome e versão
+            name, version = self._extract_metadata(path, language)
+            
+            result = ProjectInfo(
+                path=path,
+                language=language,
+                confidence=confidence,
+                detected_files=detected_files,
+                recommended_tools=recommended_tools,
+                main_file=main_file,
+                name=name or path.name,
+                version=version,
+            )
         
-        best_language = max(scores.items(), key=lambda x: x[1])
-        language, confidence = best_language
+        # Armazenar resultado e estado de validade
+        self._last_result = result
+        self._is_valid = self.validate_detection(result)
         
-        self.logger.info(f"Linguagem detectada: {language.value} (confiança: {confidence:.2f})")
-        
-        # Obter ferramentas recomendadas
-        recommended_tools = self._get_recommended_tools(language)
-        
-        # Tentar encontrar arquivo principal
-        main_file = self._find_main_file(path, language)
-        
-        # Tentar extrair nome e versão
-        name, version = self._extract_metadata(path, language)
-        
-        return ProjectInfo(
-            path=path,
-            language=language,
-            confidence=confidence,
-            detected_files=detected_files,
-            recommended_tools=recommended_tools,
-            main_file=main_file,
-            name=name or path.name,
-            version=version,
-        )
+        return result
     
     def _scan_files(self, path: Path) -> List[str]:
         """Varre arquivos do projeto."""
@@ -340,6 +348,16 @@ class ProjectDetector:
     def validate_detection(self, project_info: ProjectInfo) -> bool:
         """Valida se a detecção é confiável o suficiente."""
         return project_info.confidence >= 0.5 and project_info.language != Language.UNKNOWN
+    
+    def is_valid(self) -> bool:
+        """Retorna se a última detecção foi válida."""
+        return self._is_valid
+    
+    def get_metadata(self) -> dict:
+        """Retorna metadata da última detecção."""
+        if self._last_result:
+            return self._last_result.to_dict()
+        return {}
     
     def get_alternative_languages(self, files: List[str]) -> List[Tuple[Language, float]]:
         """Retorna linguagens alternativas com scores."""

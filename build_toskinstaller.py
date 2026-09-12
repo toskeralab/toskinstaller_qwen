@@ -77,13 +77,22 @@ def build_with_nuitka(output_dir='dist'):
         print_error(f"Arquivo principal não encontrado: {main_py}")
         return False
     
+    # Verificar existência do ícone
+    icon_path = 'assets/logos/toskeralab.ico'
+    icon_param = []
+    if os.path.exists(icon_path):
+        print_info(f"Ícone encontrado: {icon_path}")
+        icon_param = ['--windows-icon-from-ico=' + icon_path]
+    else:
+        print_warning(f"Ícone não encontrado ({icon_path}). Build prosseguirá sem ícone personalizado.")
+    
     # Comando Nuitka
     cmd = [
         sys.executable, '-m', 'nuitka',
         '--standalone',
         '--onefile',
-        '--windows-disable-console',
-        '--windows-icon-from-ico=assets/logos/toskeralab.ico',
+        '--windows-disable-console'
+    ] + icon_param + [
         '--product-name=TOSKINSTALLER',
         '--file-description=TOSKINSTALLER - Criador de Pacotes',
         '--company-name=ToskeraLAB',
@@ -119,6 +128,10 @@ def build_with_pyinstaller(output_dir='dist'):
         return False
     
     # Espec file para PyInstaller
+    # Verificar ícone
+    icon_path = 'assets/logos/toskeralab.ico'
+    icon_param = f"icon='{icon_path}'" if os.path.exists(icon_path) else "icon=None"
+    
     spec_content = f'''
 # -*- mode: python ; coding: utf-8 -*-
 
@@ -168,7 +181,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/logos/toskeralab.ico',
+    {icon_param},
 )
 '''
     
