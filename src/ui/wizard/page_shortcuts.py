@@ -5,7 +5,7 @@ Criação de atalhos, pasta de destino, arquitetura
 
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QLabel, QCheckBox, QComboBox, 
-    QGroupBox, QLineEdit, QHBoxLayout
+    QGroupBox, QLineEdit, QHBoxLayout, QPushButton, QFileDialog
 )
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QFont
