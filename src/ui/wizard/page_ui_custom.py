@@ -11,7 +11,7 @@ from PySide6.QtCore import Signal
 from PySide6.QtGui import QFont, QColor
 from PySide6.QtWidgets import QColorDialog
 
-from ...core.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 

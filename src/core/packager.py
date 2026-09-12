@@ -12,10 +12,10 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any, Callable
 from datetime import datetime
 
-from .package_result import PackageResult
-from ..models.package_config import PackageConfig, OutputFormat
-from ..utils.file_utils import FileUtils
-from ..utils.logger import get_logger
+from src.core.package_result import PackageResult
+from src.models.package_config import PackageConfig, OutputFormat
+from src.utils.file_utils import FileUtils
+from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -222,7 +222,7 @@ class Packager:
     
     def _generate_inno(self, source_exe: Path) -> PackageResult:
         """Gera instalador Inno Setup"""
-        from ..engines.inno.inno_builder import InnoBuilder
+        from src.engines.inno.inno_builder import InnoBuilder
         
         result = PackageResult(
             success=False,
@@ -258,7 +258,7 @@ class Packager:
     
     def _generate_wix(self, source_exe: Path) -> PackageResult:
         """Gera instalador WiX (MSI)"""
-        from ..engines.wix.wix_builder import WixBuilder
+        from src.engines.wix.wix_builder import WixBuilder
         
         result = PackageResult(
             success=False,

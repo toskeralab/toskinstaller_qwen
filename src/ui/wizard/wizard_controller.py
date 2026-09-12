@@ -16,7 +16,7 @@ from .page_partners import PartnerAppsPage
 from .page_shortcuts import ShortcutsPage
 from .page_summary import SummaryPage
 
-from ...core.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 

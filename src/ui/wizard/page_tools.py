@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Signal, Qt, QThread
 from PySide6.QtGui import QFont
 
-from ...core.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 

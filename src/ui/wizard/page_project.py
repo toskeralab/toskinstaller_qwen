@@ -10,8 +10,8 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Signal, Slot, Qt
 from PySide6.QtGui import QFont
 
-from ...core.logger import get_logger
-from ...core.detector import ProjectDetector
+from src.core.logger import get_logger
+from src.core.detector import ProjectDetector
 
 logger = get_logger(__name__)
 

@@ -9,14 +9,24 @@ env/
 venv/
 .venv/
 .ENV
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
+.ENV.*
+.venv/
+.venv.*
+.conda/
 
 # Build artifacts
 build/
 dist/
 *.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.hypothesis/
 
 # Logs
 *.log
@@ -30,39 +40,15 @@ dist/
 ehthumbs.db
 Thumbs.db
 
-# Qt/QML related
-*.qmlc
-*.jsc
-qmldir
-
-# IDE specific
+# Editor
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# Virtual environments
-.venv/
-venv/
-env/
+*.tmp
 
 # Environment variables
 .env
 .env.local
-*.env.*
-
-# Testing
-.pytest_cache/
-.mypy_cache/
-.hypothesis/
-
-# Distribution / packaging
-*.egg
-*.tar.gz
-*.whl
+.env.*
 ```

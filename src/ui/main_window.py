@@ -12,7 +12,7 @@ from PySide6.QtCore import Qt, Signal, Slot, QSize
 from PySide6.QtGui import QFont, QIcon
 
 from .wizard.wizard_controller import WizardController
-from ..core.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 
