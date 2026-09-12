@@ -98,7 +98,7 @@ class ProjectSelectionPage(QWidget):
         """Quando o caminho muda, detectar projeto"""
         self._project_path = path
         
-        if path and self._detector.detect_project(path):
+        if path and self._detector.detect(path):
             # Projeto detectado com sucesso
             metadata = self._detector.get_metadata()
             self.info_label.setText(
