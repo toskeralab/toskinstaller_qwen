@@ -14,7 +14,7 @@ import uuid
 import os
 
 from src.models.package_config import PackageConfig
-from src.utils.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 

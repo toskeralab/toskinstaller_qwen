@@ -15,7 +15,7 @@ from datetime import datetime
 from src.core.package_result import PackageResult
 from src.models.package_config import PackageConfig, OutputFormat
 from src.utils.file_utils import FileUtils
-from src.utils.logger import get_logger
+from src.core.logger import get_logger
 
 logger = get_logger(__name__)
 

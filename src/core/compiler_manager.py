@@ -238,7 +238,7 @@ class CompilerManager:
         return results
     
     def get_best_available_tool(self, recommended_tools: List[BuildTool]) -> Optional[BuildTool]:
-    """Retorna a melhor ferramenta disponível."""
+        """Retorna a melhor ferramenta disponível."""
         for tool in recommended_tools:
             instance = self.get_tool(tool)
             if instance and instance.is_installed():
